@@ -24,6 +24,7 @@ const users = [
 displayNames();
 displayYoungUsers();
 reusableFunctionToDisplayNames(users);
+displayNamesUnderAge(users, 30);
 
 // broken test data for exercise 6
 
@@ -80,18 +81,18 @@ function reusableFunctionToDisplayNames(users) {
 
 // 4. Create a function that takes an array and an age threshold parameter. The function should only display characters whose age is below the given number. Render results in the list with id "age-filter-list"
 
-// function displayNamesUnderAge(listOfNames,age) {
-//   let name;
+function displayNamesUnderAge(listOfNames,age) {
+  let name;
 
-//   listOfNames.
-//     filter(x => x.age < age).
-//     forEach((x) => {
-//     name = document.createElement("li");
+  listOfNames.
+    filter(x => x.age < age).
+    forEach((x) => {
+    name = document.createElement("li");
 
-//     name.textContent = x;
-//     userUnderAgeList.appendChild(name);
-//   });
-// }
+    name.textContent = x.name + " is age " + x.age;
+    userUnderAgeList.appendChild(name);
+  });
+}
 
 // 5. Add error handling to your functions that will log an error message using console.error() if any object doesn't have a "name" property. Display any error messages in the div with id "error-messages"
 
