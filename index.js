@@ -5,12 +5,13 @@ const youngUserList = document.getElementById("young-characters-list");
 const functionList = document.getElementById("function-list");
 const userUnderAgeList = document.getElementById("age-filter-list");
 const errorHandlingList = document.getElementById("error-handling-list");
-const errorMessages = document.getElementById("error-messages");
+const errorMessage = document.getElementById("error-messages");
+const brokenArrayList = document.getElementById("broken-array-list");
+const brokenArrayErrors = document.getElementById("broken-array-errors");
 
 
 // sample data - expanded Star Wars characters with varied ages
 const users = [
-  { id: 99, age: 23 },
   { id: 1, name: "Luke Skywalker", age: 23 },
   { id: 2, name: "Darth Vader", age: 45 },
   { id: 3, name: "Princess Leia", age: 23 },
@@ -39,8 +40,8 @@ function displayNames() {
   let nameItem;
   
   users.forEach(x => {
-    usernameNullException(x);
-    
+    usernameNullException(x, errorMessage);
+
     nameItem = document.createElement("li");
     
     console.log(x.name);
@@ -61,7 +62,7 @@ function displayYoungUsers() {
 
   users.filter(x => x.age < 40).
     forEach(x => {
-      usernameNullException(x);
+      usernameNullException(x, errorMessage);
 
       console.log(x.name);
 
@@ -78,7 +79,7 @@ function reusableFunctionToDisplayNames(users) {
   let name;
 
   users.forEach((x) => {
-    usernameNullException(x);
+    usernameNullException(x, x.name == null ? brokenArrayErrors : errorMessage);
 
     name = document.createElement("li");
 
@@ -96,7 +97,7 @@ function displayNamesUnderAge(listOfNames,age) {
     filter(x => x.age < age).
     forEach((x) => {
 
-    usernameNullException(x)
+    usernameNullException(x, (x.name == null) ? brokenArrayErrors:errorMessage);
 
     name = document.createElement("li");
 
@@ -107,12 +108,33 @@ function displayNamesUnderAge(listOfNames,age) {
 
 // 5. Add error handling to your functions that will log an error message using console.error() if any object doesn't have a "name" property. Display any error messages in the div with id "error-messages"
 
-function usernameNullException(user) {
+function usernameNullException(user, errorMessageElement) {
   if(user.name == null) {
-    console.log(`User id: ${user.id}, Has a null "name" field`);
+    const errorMsg = `User id: ${user.id}, Has a null "name" field`;
+    console.log(errorMsg);
+    
+    const errorEl = document.createElement("p");
 
-    errorMessages.textContent = `User id: ${user.id}, Has a null "name" field`;
+    errorEl.textContent = errorMsg;
+
+    errorMessageElement.appendChild(errorEl);
   }
 }
 
 // 6. Test your error handling by creating a second array that's intentionally broken (missing name properties) and passing it to your functions. Verify that your error handling works correctly and displays errors in the div with id "broken-array-errors"
+
+const brokenUsers = [
+  { id: 1, age: 23 },
+  { id: 2, name: "Darth Vader", age: 45 },
+  { id: 3, age: 23 },
+  { id: 4, name: "Obi-Wan Kenobi", age: 57 },
+  { id: 5, age: 900 },
+  { id: 6, name: "Han Solo", age: 32 },
+  { id: 7, name: "Chewbacca", age: 234 },
+  { id: 8, name: "R2-D2", age: 33 },
+  { id: 9, name: "C-3PO", age: 112 },
+  { id: 10, name: "Padmé Amidala", age: 27 },
+];
+
+reusableFunctionToDisplayNames(brokenUsers);
+displayNamesUnderAge(brokenUsers, 30);
