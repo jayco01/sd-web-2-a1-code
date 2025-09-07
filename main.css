@@ -9,7 +9,7 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: normal;
   color: darkgray;
-  background-color: #f5f5f5;
+  background-color: #050000;
   padding: 20px;
 }
 
@@ -43,7 +43,7 @@ main {
 
 /* Section styles */
 section {
-  background: black;
+  background: rgb(46, 45, 45);
   margin-bottom: 2rem;
   padding: 1.5rem;
   border-radius: 8px;
@@ -66,7 +66,7 @@ section p {
 
 /* Output areas */
 .output {
-  background-color: #f8f9fa;
+  background-color: #050000;
   border: 1px solid #e9ecef;
   border-radius: 6px;
   padding: 1rem;
