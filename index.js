@@ -3,8 +3,8 @@
 const nameList = document.getElementById("names-list");
 const youngUserList = document.getElementById("young-characters-list");
 const functionList = document.getElementById("function-list");
+const userUnderAgeList = document.getElementById("age-filter-list");
 
-let usernames = [];
 
 // sample data - expanded Star Wars characters with varied ages
 const users = [
@@ -20,11 +20,10 @@ const users = [
   { id: 10, name: "Padmé Amidala", age: 27 },
 ];
 
-users.forEach(x => usernames.push(x.name));
 
 displayNames();
 displayYoungUsers();
-reusableFunctionToDisplayNames(usernames);
+reusableFunctionToDisplayNames(users);
 
 // broken test data for exercise 6
 
@@ -67,20 +66,32 @@ function displayYoungUsers() {
 
 // 3. Create a reusable function that takes any array and uses logic to render a list of character names in the HTML. Use this function to populate the list with id "function-list"
 
-function reusableFunctionToDisplayNames(listOfNames) {
+function reusableFunctionToDisplayNames(users) {
   let name;
 
-  listOfNames
-    .forEach((x) => {
+  users.forEach((x) => {
 
       name = document.createElement("li");
 
-      name.textContent = x;
+      name.textContent = x.name;
       functionList.appendChild(name);
     });
 }
 
 // 4. Create a function that takes an array and an age threshold parameter. The function should only display characters whose age is below the given number. Render results in the list with id "age-filter-list"
+
+// function displayNamesUnderAge(listOfNames,age) {
+//   let name;
+
+//   listOfNames.
+//     filter(x => x.age < age).
+//     forEach((x) => {
+//     name = document.createElement("li");
+
+//     name.textContent = x;
+//     userUnderAgeList.appendChild(name);
+//   });
+// }
 
 // 5. Add error handling to your functions that will log an error message using console.error() if any object doesn't have a "name" property. Display any error messages in the div with id "error-messages"
 
