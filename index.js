@@ -4,10 +4,13 @@ const nameList = document.getElementById("names-list");
 const youngUserList = document.getElementById("young-characters-list");
 const functionList = document.getElementById("function-list");
 const userUnderAgeList = document.getElementById("age-filter-list");
+const errorHandlingList = document.getElementById("error-handling-list");
+const errorMessages = document.getElementById("error-messages");
 
 
 // sample data - expanded Star Wars characters with varied ages
 const users = [
+  { id: 99, age: 23 },
   { id: 1, name: "Luke Skywalker", age: 23 },
   { id: 2, name: "Darth Vader", age: 45 },
   { id: 3, name: "Princess Leia", age: 23 },
@@ -36,6 +39,8 @@ function displayNames() {
   let nameItem;
   
   users.forEach(x => {
+    usernameNullException(x);
+    
     nameItem = document.createElement("li");
     
     console.log(x.name);
@@ -56,6 +61,8 @@ function displayYoungUsers() {
 
   users.filter(x => x.age < 40).
     forEach(x => {
+      usernameNullException(x);
+
       console.log(x.name);
 
       youngUser = document.createElement("li");
@@ -71,12 +78,13 @@ function reusableFunctionToDisplayNames(users) {
   let name;
 
   users.forEach((x) => {
+    usernameNullException(x);
 
-      name = document.createElement("li");
+    name = document.createElement("li");
 
-      name.textContent = x.name;
-      functionList.appendChild(name);
-    });
+    name.textContent = x.name;
+    functionList.appendChild(name);
+  });
 }
 
 // 4. Create a function that takes an array and an age threshold parameter. The function should only display characters whose age is below the given number. Render results in the list with id "age-filter-list"
@@ -87,6 +95,9 @@ function displayNamesUnderAge(listOfNames,age) {
   listOfNames.
     filter(x => x.age < age).
     forEach((x) => {
+
+    usernameNullException(x)
+
     name = document.createElement("li");
 
     name.textContent = x.name + " is age " + x.age;
@@ -95,5 +106,13 @@ function displayNamesUnderAge(listOfNames,age) {
 }
 
 // 5. Add error handling to your functions that will log an error message using console.error() if any object doesn't have a "name" property. Display any error messages in the div with id "error-messages"
+
+function usernameNullException(user) {
+  if(user.name == null) {
+    console.log(`User id: ${user.id}, Has a null "name" field`);
+
+    errorMessages.textContent = `User id: ${user.id}, Has a null "name" field`;
+  }
+}
 
 // 6. Test your error handling by creating a second array that's intentionally broken (missing name properties) and passing it to your functions. Verify that your error handling works correctly and displays errors in the div with id "broken-array-errors"
