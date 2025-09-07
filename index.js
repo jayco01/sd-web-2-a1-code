@@ -136,5 +136,4 @@ const brokenUsers = [
   { id: 10, name: "Padmé Amidala", age: 27 },
 ];
 
-reusableFunctionToDisplayNames(brokenUsers);
 displayNamesUnderAge(brokenUsers, 30);
