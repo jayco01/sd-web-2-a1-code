@@ -40,7 +40,6 @@ function displayNames() {
   let nameItem;
   
   users.forEach(x => {
-    usernameNullException(x, errorMessage);
 
     nameItem = document.createElement("li");
     
@@ -62,7 +61,6 @@ function displayYoungUsers() {
 
   users.filter(x => x.age < 40).
     forEach(x => {
-      usernameNullException(x, errorMessage);
 
       console.log(x.name);
 
@@ -79,7 +77,6 @@ function reusableFunctionToDisplayNames(users) {
   let name;
 
   users.forEach((x) => {
-    usernameNullException(x, x.name == null ? brokenArrayErrors : errorMessage);
 
     name = document.createElement("li");
 
@@ -97,7 +94,7 @@ function displayNamesUnderAge(listOfNames,age) {
     filter(x => x.age < age).
     forEach((x) => {
 
-    usernameNullException(x, (x.name == null) ? brokenArrayErrors:errorMessage);
+    usernameNullException(x, errorMessage, errorHandlingList);
 
     name = document.createElement("li");
 
@@ -108,8 +105,8 @@ function displayNamesUnderAge(listOfNames,age) {
 
 // 5. Add error handling to your functions that will log an error message using console.error() if any object doesn't have a "name" property. Display any error messages in the div with id "error-messages"
 
-function usernameNullException(user, errorMessageElement) {
-  if(user.name == null) {
+function usernameNullException(user, errorMessageElement, handledEl) {
+  if(!user.name) {
     const errorMsg = `User id: ${user.id}, Has a null "name" field`;
     console.log(errorMsg);
     
@@ -118,6 +115,13 @@ function usernameNullException(user, errorMessageElement) {
     errorEl.textContent = errorMsg;
 
     errorMessageElement.appendChild(errorEl);
+  } else {
+
+    const userItem = document.createElement("li");
+
+    userItem.textContent = user.name;
+
+    handledEl.appendChild(userItem);
   }
 }
 
