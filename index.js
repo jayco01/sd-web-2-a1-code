@@ -43,8 +43,6 @@ function displayNames() {
 
     nameItem = document.createElement("li");
 
-    nameItem.classList.add("output");
-
     console.log(x.name);
 
     nameItem.textContent = x.name;  
@@ -68,8 +66,6 @@ function displayYoungUsers() {
 
       youngUser = document.createElement("li");
 
-      youngUser.classList.add("output");
-
       youngUser.textContent = x.name + " is age " + x.age;
       youngUserList.appendChild(youngUser);
     });
@@ -83,8 +79,6 @@ function reusableFunctionToDisplayNames(users) {
   users.forEach((x) => {
 
     name = document.createElement("li");
-
-    name.classList.add("output");
 
     name.textContent = x.name;
     functionList.appendChild(name);
@@ -104,8 +98,6 @@ function displayNamesUnderAge(listOfNames,age) {
 
     if(x.name) {
       name = document.createElement("li");
-
-      name.classList.add("output");
 
       name.textContent = x.name + " is age " + x.age;
       userUnderAgeList.appendChild(name);
