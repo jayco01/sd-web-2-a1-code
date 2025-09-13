@@ -151,5 +151,3 @@ const brokenUsers = [
   { id: 9, name: "C-3PO", age: 112 },
   { id: 10, name: "Padmé Amidala", age: 27 },
 ];
-
-displayNamesUnderAge(brokenUsers, 30);
