@@ -112,12 +112,16 @@ function usernameNullException(user, errorMessageElement, handledEl) {
     
     const errorEl = document.createElement("p");
 
+    errorEl.classList.add("error-message");
+
     errorEl.textContent = errorMsg;
 
     errorMessageElement.appendChild(errorEl);
   } else {
 
     const userItem = document.createElement("li");
+
+    userItem.classList.add("success");
 
     userItem.textContent = user.name;
 
