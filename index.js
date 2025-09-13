@@ -28,7 +28,7 @@ const users = [
 displayNames();
 displayYoungUsers();
 reusableFunctionToDisplayNames(users);
-displayNamesUnderAge(users, 30);
+// displayNamesUnderAge(users, 30);
 
 // broken test data for exercise 6
 
@@ -102,12 +102,14 @@ function displayNamesUnderAge(listOfNames,age) {
 
     usernameNullException(x, errorMessage, errorHandlingList);
 
-    name = document.createElement("li");
+    if(x.name) {
+      name = document.createElement("li");
 
-    name.classList.add("output");
+      name.classList.add("output");
 
-    name.textContent = x.name + " is age " + x.age;
-    userUnderAgeList.appendChild(name);
+      name.textContent = x.name + " is age " + x.age;
+      userUnderAgeList.appendChild(name);
+    }
   });
 }
 
@@ -151,3 +153,5 @@ const brokenUsers = [
   { id: 9, name: "C-3PO", age: 112 },
   { id: 10, name: "Padmé Amidala", age: 27 },
 ];
+
+displayNamesUnderAge(brokenUsers, 30);
